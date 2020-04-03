@@ -1,0 +1,42 @@
+<mat-card>  
+    <!-- Title of an Card -->  
+    <mat-card-title>  
+        View Account Balance
+    </mat-card-title>  
+  
+    <!-- Actual content starts from here -->  
+    <mat-card-content>  
+        <form [formGroup]="createAccountForm" (ngSubmit)="createWallet(createAccountForm.value)">  
+            <table>  
+                <tr>  
+                    <td>  
+                        <mat-form-field class="demo-full-width">  
+                            <input formControlName="name" matInput placeholder="Name">  
+                        </mat-form-field>  
+                        <mat-error>  
+                            <span *ngIf="!createAccountForm.get('name').valid && createAccountForm.get('name').touched">Please enter Address !!!</span>  
+                        </mat-error>  
+                    </td> 
+                </tr> 
+                <tr>  
+                    <td>  
+                        <mat-form-field class="demo-full-width">  
+                            <input formControlName="mobileNumber" matInput placeholder="Mobile Number">  
+                        </mat-form-field>  
+                        <mat-error>  
+                            <span *ngIf="!createAccountForm.get('mobileNumber').valid && createAccountForm.get('mobileNumber').touched">Please enter Address !!!</span>  
+                        </mat-error>  
+                    </td> 
+                </tr> 
+                <tr>  
+                    <td colspan="2" class="content-center">  
+                        <button mat-raised-button color="accent" [disabled]="!createAccountForm.valid">Create Account</button>  
+                    </td>  
+                </tr>  
+                <tr>  
+                    <td></td>  
+                </tr>  
+            </table>  
+        </form>
+    </mat-card-content>  
+  </mat-card>

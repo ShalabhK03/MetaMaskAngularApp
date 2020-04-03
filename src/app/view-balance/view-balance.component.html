@@ -1,0 +1,34 @@
+<mat-card>  
+  <!-- Title of an Card -->  
+  <mat-card-title>  
+      View Account Balance
+  </mat-card-title>  
+
+  <!-- Actual content starts from here -->  
+  <mat-card-content>  
+      <form [formGroup]="balanceForm" (ngSubmit)="onFormSubmit(balanceForm.value)">  
+          <table>  
+              <tr>  
+                  <td>  
+                      <mat-form-field class="demo-full-width">  
+                          <input formControlName="Address" matInput placeholder="Address">  
+                      </mat-form-field>  
+                      <mat-error>  
+                          <span *ngIf="!balanceForm.get('Address').valid && balanceForm.get('Address').touched">Please enter Address !!!</span>  
+                      </mat-error>  
+                  </td> 
+              </tr> 
+              <tr>  
+                  <td colspan="2" class="content-center">  
+                      <button mat-raised-button color="accent" [disabled]="!balanceForm.valid">Submit</button>  
+                  </td>  
+              </tr>  
+              <tr>  
+                  <td></td>  
+              </tr>  
+          </table>  
+      </form>  
+      <p>{{balance}}</p>
+  </mat-card-content>  
+</mat-card>
+<mat-spinner *ngIf="showLoader === true"></mat-spinner>

@@ -1,0 +1,49 @@
+<mat-card>  
+    <!-- Title of an Card -->  
+    <mat-card-title>  
+        Send Ether
+    </mat-card-title>  
+  
+    <!-- Actual content starts from here -->  
+    <mat-card-content>  
+        <form [formGroup]="transferEtherForm" (ngSubmit)="onFormSubmit(transferEtherForm.value)">  
+            <table>
+                <tr>  
+                    <td>  
+                        <mat-form-field class   ="demo-full-width"> 
+                            <mat-label>Select Address</mat-label> 
+                            <mat-select formControlName = "ToAddress">
+                              <mat-option>-- Select --</mat-option>
+                              <mat-option *ngFor="let option of dataSource" [value]="option.address">
+                                {{option.name}}
+                              </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <mat-error>  
+                            <span *ngIf="!transferEtherForm.get('ToAddress').valid && transferEtherForm.get('ToAddress').touched">Please select any item !!!</span>  
+                        </mat-error>
+                    </td> 
+                </tr> 
+                <tr>  
+                    <td>  
+                        <mat-form-field class   ="demo-full-width">  
+                            <input formControlName="Amount" matInput placeholder="Amount">  
+                        </mat-form-field>  
+                        <mat-error>  
+                            <span *ngIf="!transferEtherForm.get('Amount').valid && transferEtherForm.get('Amount').touched">Please enter Aount !!!</span>  
+                        </mat-error>  
+                    </td> 
+                </tr> 
+                <tr>  
+                    <td colspan="2" class="content-center">  
+                        <button mat-raised-button color="accent" [disabled]="!transferEtherForm.valid">Submit</button>  
+                    </td>  
+                </tr>  
+                <tr>  
+                    <td></td>  
+                </tr>  
+            </table>  
+        </form>
+    </mat-card-content>  
+  </mat-card>
+  <ngx-spinner></ngx-spinner>

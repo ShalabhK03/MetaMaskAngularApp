@@ -1,0 +1,45 @@
+<mat-form-field class="basic-container">
+  <mat-label>Filter</mat-label>
+  <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium">
+</mat-form-field>
+<table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8 basic-container">
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
+  
+    <!-- Weight Column -->
+    <ng-container matColumnDef="mobileNumber">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Mobile Number </th>
+      <td mat-cell *matCellDef="let element"> {{element.mobileNumber}} </td>
+    </ng-container>
+  
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="isActive">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Is Active </th>
+      <td mat-cell *matCellDef="let element"> {{element.isActive}} </td>
+    </ng-container>
+
+    <!-- button Column -->
+    <ng-container matColumnDef="address">
+        <th mat-header-cell *matHeaderCellDef> </th>
+        <td mat-cell *matCellDef="let element"> <button mat-raised-button color="accent" id="{{element.address}}" (click)="fetchBalance(element.address)">View Balance</button> </td>
+    </ng-container>
+
+    <!-- Balance Column -->
+    <ng-container matColumnDef="balance">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Balance </th>
+      <td mat-cell *matCellDef="let element"> {{element.balance}} </td>
+    </ng-container>
+    
+    <!-- button Column -->
+    <ng-container matColumnDef="sendEther">
+      <th mat-header-cell *matHeaderCellDef> </th>
+      <td mat-cell *matCellDef="let element"> <button mat-raised-button color="accent" id="{{element.address}}" routerLink="/sendEther/{{element.address}}">Send Ether</button> </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+<mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
